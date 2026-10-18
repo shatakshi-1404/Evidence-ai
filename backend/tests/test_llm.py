@@ -119,3 +119,33 @@ def test_provider_selection(monkeypatch):
     monkeypatch.setattr(settings, "llm_provider", "nonsense")
     with pytest.raises(ValueError):
         get_llm_provider()
+
+
+def test_rate_limited_requests_are_retried_after_waiting(monkeypatch):
+    waits: list[float] = []
+    monkeypatch.setattr("app.services.llm.time.sleep", waits.append)
+    calls = []
+
+    def handler(request):
+        calls.append(1)
+        if len(calls) < 3:
+            return httpx.Response(429, headers={"retry-after": "2"}, json={"error": "slow down"})
+        return httpx.Response(200, json={"choices": [{"message": {"content": "Answer [1]."}}]})
+
+    answer = make_provider(handler).answer("Q", [make_candidate(1)])
+    assert answer == "Answer [1]."
+    assert len(calls) == 3
+    assert waits == [2.0, 2.0]
+
+
+def test_rate_limit_gives_up_after_the_retry_budget(monkeypatch):
+    monkeypatch.setattr("app.services.llm.time.sleep", lambda _s: None)
+    calls = []
+
+    def handler(request):
+        calls.append(1)
+        return httpx.Response(429, json={"error": "slow down"})
+
+    with pytest.raises(LLMError):
+        make_provider(handler).answer("Q", [make_candidate(1)])
+    assert len(calls) == 3  # the first try plus two retries

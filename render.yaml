@@ -1,0 +1,65 @@
+# Render Blueprint: creates the database, Redis and the backend web service in one go.
+# Render dashboard -> New + -> Blueprint -> pick this repo. Then fill the prompted values.
+databases:
+  - name: evidenceai-db
+    databaseName: evidenceai
+    plan: basic-256mb        # a paid plan: the free database allows only one per account
+    region: singapore        # keep all three services in the SAME region
+
+services:
+  - type: keyvalue
+    name: evidenceai-redis
+    plan: free
+    region: singapore
+    ipAllowList: []          # only your own services can reach it (private network)
+
+  - type: web
+    name: evidenceai-api
+    runtime: docker
+    region: singapore
+    plan: standard           # about 2 GB RAM: the embedding model needs it
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    # Migrations, then the document worker (background), then the API.
+    dockerCommand: sh -c "alembic upgrade head && (python -m app.worker &) && uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips '*'"
+    healthCheckPath: /api/health
+    disk:
+      name: evidenceai-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: evidenceai-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: evidenceai-redis
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: UPLOAD_DIR
+        value: /data/uploads
+      - key: EVAL_REPORT_PATH
+        value: /data/eval/latest.json
+      - key: HF_HOME
+        value: /data/hf
+      - key: EMBEDDING_PROVIDER
+        value: sentence_transformers
+      - key: EMBEDDING_MODEL
+        value: BAAI/bge-small-en-v1.5
+      - key: MIN_SIMILARITY
+        value: "0.50"
+      - key: LLM_PROVIDER
+        value: openai_compatible
+      - key: LLM_BASE_URL
+        value: https://api.groq.com/openai/v1
+      - key: LLM_MODEL
+        value: openai/gpt-oss-120b
+      - key: LLM_API_KEY
+        sync: false          # Render asks you to type this one (your Groq key)
+      - key: CORS_ORIGINS
+        sync: false          # Render asks for this: ["https://YOUR-APP.vercel.app"]

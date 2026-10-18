@@ -56,7 +56,7 @@ class Settings(BaseSettings):
     llm_api_key: SecretStr = SecretStr("")
     llm_model: str = "gpt-4o-mini"
     llm_timeout_seconds: int = 60
-    llm_max_retries: int = 2
+    llm_max_retries: int = 2  # extra attempts when the provider says "rate limited" (429)
 
     # Evaluation
     eval_report_path: str = "./data/eval/latest.json"
