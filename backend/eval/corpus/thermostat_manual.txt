@@ -1,0 +1,13 @@
+Meridian Thermostat Troubleshooting Manual
+
+Error E-417 means the thermostat has lost its connection to the Wi-Fi network. Move the router closer, then hold the ring button for 10 seconds to restart pairing. If the error returns, check that your network uses the 2.4 GHz band, because the device cannot join 5 GHz networks.
+
+Error E-203 indicates a wiring fault at the C-wire terminal. Turn off power at the breaker before inspecting the wires. A loose or missing C-wire is the most common cause, and the Meridian power extender kit can fix it without new wiring.
+
+Error E-550 appears when the temperature sensor reports a value outside the normal range. Remove the thermostat from its wall plate for 30 seconds and reattach it. If E-550 persists, the sensor must be replaced under warranty.
+
+To perform a factory reset, hold the ring button and the back button together for 15 seconds until the display shows a blue circle. A factory reset erases all schedules and Wi-Fi settings but keeps your account.
+
+The display turns amber when the battery backup falls below 20 percent. The thermostat charges from the heating system wires, so a fully drained unit may take up to 4 hours to recover after wiring is restored.
+
+For firmware updates, keep the thermostat connected to Wi-Fi overnight. Updates install automatically between 2 am and 4 am local time and the device restarts once when finished.

@@ -1,0 +1,7 @@
+{
+  "hybrid_hit_at_5": 0.8,
+  "hybrid_mrr": 0.6,
+  "answered_rate": 0.7,
+  "refusal_rate": 0.4,
+  "cited_evidence_rate": 0.6
+}

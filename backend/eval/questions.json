@@ -1,0 +1,36 @@
+{
+  "questions": [
+    {"id": "ret-1", "question": "How long do I have to send back a thermostat I don't want?", "evidence": ["within 45 days of delivery"], "answerable": true},
+    {"id": "ret-2", "question": "When will my money come back after I return something?", "evidence": ["within 7 business days"], "answerable": true},
+    {"id": "ret-3", "question": "Is there a charge for returning a big business order late?", "evidence": ["restocking fee of 15 percent"], "answerable": true},
+    {"id": "ret-4", "question": "Can I get my shipping costs refunded?", "evidence": ["only if the item arrived damaged"], "answerable": true},
+
+    {"id": "ship-1", "question": "How fast can I get a thermostat if I'm in a hurry?", "evidence": ["delivers within 2 business days"], "answerable": true},
+    {"id": "ship-2", "question": "Do you deliver to Canada?", "evidence": ["ship to Canada and Mexico"], "answerable": true},
+    {"id": "ship-3", "question": "Which city does my order ship from?", "evidence": ["warehouse in Reno, Nevada"], "answerable": true},
+    {"id": "ship-4", "question": "What is the cutoff time for same-day dispatch?", "evidence": ["before 2 pm Eastern time"], "answerable": true},
+
+    {"id": "war-1", "question": "How long does the warranty last?", "evidence": ["limited warranty of 3 years"], "answerable": true},
+    {"id": "war-2", "question": "Will the warranty pay for damage from a power surge?", "evidence": ["incorrect wiring, power surges"], "answerable": true},
+    {"id": "war-3", "question": "How much is the extended protection plan?", "evidence": ["costs 39 dollars"], "answerable": true},
+    {"id": "war-4", "question": "If I sell my thermostat, does the warranty go to the buyer?", "evidence": ["cannot be transferred when a thermostat is resold"], "answerable": true},
+
+    {"id": "man-1", "question": "What does error E-417 mean?", "evidence": ["lost its connection to the Wi-Fi network"], "answerable": true},
+    {"id": "man-2", "question": "My thermostat shows E-203. What should I check?", "evidence": ["wiring fault at the C-wire terminal"], "answerable": true},
+    {"id": "man-3", "question": "How do I wipe the device and start over?", "evidence": ["hold the ring button and the back button together"], "answerable": true},
+    {"id": "man-4", "question": "Why is the screen glowing orange?", "evidence": ["display turns amber"], "answerable": true},
+    {"id": "man-5", "question": "When do software updates get installed?", "evidence": ["between 2 am and 4 am local time"], "answerable": true},
+    {"id": "man-6", "question": "Will it connect to a 5 GHz network?", "evidence": ["cannot join 5 GHz networks"], "answerable": true},
+
+    {"id": "lea-1", "question": "How many vacation days do I earn per year?", "evidence": ["18 days per year"], "answerable": true},
+    {"id": "lea-2", "question": "How much paid time off do new parents get?", "evidence": ["16 weeks of paid parental leave"], "answerable": true},
+    {"id": "lea-3", "question": "Can I roll over unused vacation days?", "evidence": ["maximum of 5 days"], "answerable": true},
+    {"id": "lea-4", "question": "Do I need a doctor's note when I'm sick?", "evidence": ["longer than 3 consecutive days"], "answerable": true},
+
+    {"id": "none-1", "question": "What is Meridian's policy on working from home?", "evidence": [], "answerable": false},
+    {"id": "none-2", "question": "Does the thermostat work with Apple HomeKit?", "evidence": [], "answerable": false},
+    {"id": "none-3", "question": "Who is the chief executive of Meridian Home?", "evidence": [], "answerable": false},
+    {"id": "none-4", "question": "What is the capital city of Australia?", "evidence": [], "answerable": false},
+    {"id": "none-5", "question": "How do I install the thermostat with radiant floor heating?", "evidence": [], "answerable": false}
+  ]
+}
